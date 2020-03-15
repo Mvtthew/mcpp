@@ -13,6 +13,31 @@ router.get('/', isAuth, (req, res) => {
 	res.json(req.user);
 });
 
+// Update requested user
+router.put('/', isAuth, (req, res) => {
+
+	let userToUpdate = req.body;
+
+
+	if (!userToUpdate.password) {
+		User.findByIdAndUpdate(req.user._id, userToUpdate).then(() => {
+			User.findById(req.user._id).select({ password: 0 }).then(newUser => {
+				res.json(newUser);
+			});
+		}).catch(err => {
+			res.statusCode = 401;
+			res.json({
+				message: "Bad updated user object"
+			});
+		});
+	} else {
+		res.statusCode = 401;
+		res.json({
+			message: "Bad updated user object"
+		});
+	}
+});
+
 // User login / get token endpoint
 router.post('/token', (req, res) => {
 	const {
@@ -40,14 +65,14 @@ router.post('/token', (req, res) => {
 				res.statusCode = 401;
 				res.json({
 					message: "Bad credentials"
-				})
+				});
 			}
 		});
 	} else {
 		res.statusCode = 400;
 		res.json({
 			message: "All fields are required (email, password)"
-		})
+		});
 	}
 });
 
@@ -75,7 +100,7 @@ router.post('/register', (req, res) => {
 				res.statusCode = 400;
 				res.json({
 					message: "User with this e-mail exists"
-				})
+				});
 
 			}
 		});
@@ -84,7 +109,7 @@ router.post('/register', (req, res) => {
 		res.statusCode = 400;
 		res.json({
 			message: "All fields are required (name, email, password)"
-		})
+		});
 	}
 });
 
