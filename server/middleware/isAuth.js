@@ -15,8 +15,17 @@ module.exports = (req, res, next) => {
 				if (!err) {
 
 					User.findById(data._id).select({ password: 0 }).then(user => {
-						req.user = user;
-						next();
+						if (user) {
+
+							req.user = user;
+							next();
+
+						} else {
+							res.statusCode = 401;
+							res.json({
+								message: "Wrong authorization token"
+							});
+						}
 					});
 
 				} else {
@@ -40,4 +49,4 @@ module.exports = (req, res, next) => {
 			message: "Authorization header is missing"
 		});
 	}
-}
+};
