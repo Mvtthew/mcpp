@@ -13,6 +13,16 @@ router.get('/', isAuth, (req, res) => {
 	res.json(req.user);
 });
 
+// Update requested user
+router.put('/', isAuth, (req, res) => {
+	const user = req.body;
+	User.findByIdAndUpdate(req.user._id, user).then(() => {
+		User.findById(req.user._id).select({ password: 0 }).then(newUser => {
+			res.json(newUser);
+		});
+	});
+});
+
 // User login / get token endpoint
 router.post('/token', (req, res) => {
 	const {

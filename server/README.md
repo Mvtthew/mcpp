@@ -65,7 +65,7 @@ Body:
 
 Headers: 
 {
-	Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJf
+	Authorization: Bearer eyJhbGciOiJ
 }
 ```
 >Example response
@@ -73,6 +73,36 @@ Headers:
 {
   "_id": "5e6e6d8c0500a60c44d60c04",
   "name": "Mateusz",
+  "email": "user@gmail.com",
+  "__v": 0
+}
+```
+
+## Update authorized user
+>Request [PUT]
+```  
+/user
+
+Headers: 
+{
+	Authorization: Bearer eyJhbGciOiJ
+	Content-Type: application/json
+}
+Body (example1): (you can update all or any number of fields)
+{
+	"name": "New name"
+}
+Body (example2):
+{
+	"name": "New name",
+	"email": "user@gmail.com"
+}
+```
+>Example response
+```
+{
+  "_id": "5e6e6d8c0500a60c44d60c04",
+  "name": "New name",
   "email": "user@gmail.com",
   "__v": 0
 }
