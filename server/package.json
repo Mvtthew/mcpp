@@ -1,0 +1,31 @@
+{
+  "name": "mcpp-server",
+  "version": "0.0.0",
+  "description": "Makeup Collection & Project Pan WebAPI",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mvtthew/mcpp.git"
+  },
+  "keywords": [
+    "Angular",
+    "Node.js",
+    "API",
+    "REST",
+    "CRUD",
+    "MongoDB",
+    "WebAPP"
+  ],
+  "author": "Mateusz Ożóg",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Mvtthew/mcpp/issues"
+  },
+  "homepage": "https://github.com/Mvtthew/mcpp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
