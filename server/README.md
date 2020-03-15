@@ -107,3 +107,20 @@ Body (example2):
   "__v": 0
 }
 ```
+
+## Delete authorized user
+>Request [DELETE]
+```  
+/user
+
+Headers: 
+{
+	Authorization: Bearer eyJhbGciOiJ
+}
+```
+>Example response
+```
+{
+  "message": "User succesfully deleted"
+}
+```

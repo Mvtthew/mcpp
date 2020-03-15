@@ -38,6 +38,17 @@ router.put('/', isAuth, (req, res) => {
 	}
 });
 
+// Delete requested user
+router.delete('/', isAuth, (req, res) => {
+	User.findByIdAndDelete(req.user._id).then(() => {
+		res.json({
+			message: "User succesfully deleted"
+		});
+	}).catch(err => {
+		res.json(err);
+	});
+});
+
 // User login / get token endpoint
 router.post('/token', (req, res) => {
 	const {
@@ -94,6 +105,7 @@ router.post('/register', (req, res) => {
 					password: hashedPassword
 				}).then(user => {
 					user.password = null;
+					res.statusCode = 201;
 					res.json(user);
 				});
 			} else {
