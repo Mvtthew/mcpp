@@ -5,6 +5,13 @@ const jwtSecret = require('../config/config').jwtSecret;
 
 // User model
 const User = require('../models/User');
+// Middleware
+const isAuth = require('../middleware/isAuth');
+
+// Get requested user data 
+router.get('/', isAuth, (req, res) => {
+	res.json(req.user);
+});
 
 // User login / get token endpoint
 router.post('/token', (req, res) => {
