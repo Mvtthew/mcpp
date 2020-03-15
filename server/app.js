@@ -1,14 +1,16 @@
 const express = require('express');
+
 const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-	res.json({
-		message: "mcpp WebAPI works!"
-	});
-});
+// Connect to DB
+require('./database/connect');
 
+// Routes
+const router = require('./routes');
+app.use(router);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-	console.log(`mcpp WebAPI server started on port :${PORT}`)
+	console.log(`mcpp WebAPI server started on port :${PORT}`);
 });
