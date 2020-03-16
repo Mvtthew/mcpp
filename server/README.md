@@ -151,3 +151,120 @@ Headers:
   	"message": "User succesfully deleted"
 }
 ```
+
+
+
+# Products
+
+
+## Get authorized user products
+>Requert [GET]
+```
+/products
+
+Headers:
+{
+	Authorization: Bearer eyJhbGciOiJ
+}
+```
+>Example response
+```
+[
+	{
+		"category": "Lipsticks",
+		"products": [
+		{
+			"description": "",
+			"rating": 0,
+			"pans": {
+			"all": 0,
+			"used": 0
+			},
+			"uses": 0,
+			"_id": "5e6fddc4b8dbd60ff8a39eb3",
+			"_uid": "5e6fdd77e0d80e213046d7ff",
+			"name": "Wolf",
+			"category": "Lipsticks",
+			"brand": "CatD",
+			"attributes": [],
+			"__v": 0
+		},
+		{
+			"description": "",
+			"rating": 0,
+			"pans": {
+			"all": 0,
+			"used": 0
+			},
+			"uses": 0,
+			"_id": "5e6fddcfb24c6d0384a80b97",
+			"_uid": "5e6fdd77e0d80e213046d7ff",
+			"name": "Wolf",
+			"category": "Lipsticks",
+			"brand": "CatD",
+			"attributes": [],
+			"__v": 0
+		}
+		]
+	},
+	{
+		"category": "cat2",
+		"products": []
+	}
+]
+```
+
+
+## Create product
+>Request [POST]
+```
+/products
+
+Headers:
+{
+	Authorization: Bearer eyJhbGciOiJ,
+	Content-Type: application/json
+}
+Body (example1): (you can update all or only required fields at once)
+{
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD"
+}
+Body (example2):
+{
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD",
+	"description": "Not very good product",
+	"rating": 8,
+	"pans": {
+		"all": 5,
+		"used": 1
+	},
+	"uses": 15,
+	"attributes": [
+		"Expires in": "5 months",
+		"Given to": "Laura"
+	]
+}
+```
+>Example response
+```
+{
+	"description": "",
+	"rating": 0,
+	"pans": {
+		"all": 0,
+		"used": 0
+	},
+	"uses": 0,
+	"_id": "5e6fddcfb24c6d0384a80b97",
+	"_uid": "5e6fdd77e0d80e213046d7ff",
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD",
+	"attributes": [],
+	"__v": 0
+}
+```
