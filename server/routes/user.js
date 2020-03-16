@@ -18,24 +18,21 @@ router.put('/', isAuth, (req, res) => {
 
 	let userToUpdate = req.body;
 
+	if (userToUpdate.password) {
+		userToUpdate.password = crypto.createHash('sha256').update(userToUpdate.password).digest('base64');
+	}
 
-	if (!userToUpdate.password) {
-		User.findByIdAndUpdate(req.user._id, userToUpdate).then(() => {
-			User.findById(req.user._id).select({ password: 0 }).then(newUser => {
-				res.json(newUser);
-			});
-		}).catch(err => {
-			res.statusCode = 401;
-			res.json({
-				message: "Bad updated user object"
-			});
+	User.findByIdAndUpdate(req.user._id, userToUpdate).then(() => {
+		User.findById(req.user._id).select({ password: 0 }).then(newUser => {
+			res.json(newUser);
 		});
-	} else {
+	}).catch(err => {
 		res.statusCode = 401;
 		res.json({
 			message: "Bad updated user object"
 		});
-	}
+	});
+
 });
 
 // Delete requested user
