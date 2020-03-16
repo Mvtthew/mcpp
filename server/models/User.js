@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema({
 	categories: {
 		type: [String],
 		default: []
+	},
+
+	// Brands
+	brands: {
+		type: [String],
+		default: []
 	}
 
 });

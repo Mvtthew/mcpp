@@ -26,6 +26,7 @@ Body:
 ```
 {
 	"categories": [],
+	"brands": [],
 	"_id": "5e6e6d8c0500a60c44d60c04",
 	"name": "Mateusz",
 	"email": "user@gmail.com",
@@ -76,6 +77,10 @@ Headers:
 		"cat1",
 		"cat2"
 	],
+	"brands": [
+		"brand1",
+		"brand2"
+	],
 	"_id": "5e6e6d8c0500a60c44d60c04",
 	"name": "Mateusz",
 	"email": "user@gmail.com",
@@ -103,6 +108,10 @@ Body (example2):
 		"cat1",
 		"cat2"
 	],
+	"brands": [
+		"brand1",
+		"brand2"
+	],
 	"name": "New name",
 	"email": "user@gmail.com",
 	"password": "newPassword"
@@ -114,6 +123,10 @@ Body (example2):
 	"categories": [
 		"cat1",
 		"cat2"
+	],
+	"brands": [
+		"brand1",
+		"brand2"
 	],
 	"_id": "5e6faf29df6cea0bd4d1cd11",
 	"name": "New name",
