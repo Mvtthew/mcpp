@@ -1,0 +1,4 @@
+module.exports = {
+	mongoURI: 'default mongodb connection uri',
+	jwtSecret: 'your super secret sting'
+}
