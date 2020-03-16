@@ -20,8 +20,7 @@ router.get('/', isAuth, (req, res) => {
 					products: products
 				});
 				forEachIndex++;
-				console.log(forEachIndex);
-				if (forEachIndex == user.categories.length) {
+				if (forEachIndex === user.categories.length) {
 					res.json(productsToReturn);
 				}
 			});
