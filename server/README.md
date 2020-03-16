@@ -25,11 +25,12 @@ Body:
 >Example response
 ```
 {
-  "_id": "5e6e6d8c0500a60c44d60c04",
-  "name": "Mateusz",
-  "email": "user@gmail.com",
-  "password": null,
-  "__v": 0
+	"categories": [],
+	"_id": "5e6e6d8c0500a60c44d60c04",
+	"name": "Mateusz",
+	"email": "user@gmail.com",
+	"password": null,
+	"__v": 0
 }
 ```
 
@@ -52,8 +53,8 @@ Body:
 >Example response
 ```
 {
-  "tokenType": "Bearer",
-  "token": "eyJhbGciOiJ"
+ 	"tokenType": "Bearer",
+  	"token": "eyJhbGciOiJ"
 }
 ```
 
@@ -71,10 +72,14 @@ Headers:
 >Example response
 ```
 {
-  "_id": "5e6e6d8c0500a60c44d60c04",
-  "name": "Mateusz",
-  "email": "user@gmail.com",
-  "__v": 0
+	"categories": [
+		"cat1",
+		"cat2"
+	],
+	"_id": "5e6e6d8c0500a60c44d60c04",
+	"name": "Mateusz",
+	"email": "user@gmail.com",
+	"__v": 0
 }
 ```
 
@@ -88,23 +93,32 @@ Headers:
 	Authorization: Bearer eyJhbGciOiJ
 	Content-Type: application/json
 }
-Body (example1): (you can update all or any number of fields)
+Body (example1): (you can update all or any number of fields at once)
 {
 	"name": "New name"
 }
 Body (example2):
 {
+	"categories": [
+		"cat1",
+		"cat2"
+	],
 	"name": "New name",
-	"email": "user@gmail.com"
+	"email": "user@gmail.com",
+	"password": "newPassword"
 }
 ```
 >Example response
 ```
 {
-  "_id": "5e6e6d8c0500a60c44d60c04",
-  "name": "New name",
-  "email": "user@gmail.com",
-  "__v": 0
+	"categories": [
+		"cat1",
+		"cat2"
+	],
+	"_id": "5e6faf29df6cea0bd4d1cd11",
+	"name": "New name",
+	"email": "u123ser@gmail.com",
+	"__v": 0
 }
 ```
 
@@ -121,6 +135,6 @@ Headers:
 >Example response
 ```
 {
-  "message": "User succesfully deleted"
+  	"message": "User succesfully deleted"
 }
 ```
