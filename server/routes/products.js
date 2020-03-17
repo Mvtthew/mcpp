@@ -29,9 +29,32 @@ router.get('/', isAuth, (req, res) => {
 
 });
 
+// Delete a product
+router.delete('/:id', isAuth, (req, res) => {
+	const _id = req.params.id;
+	Product.findOneAndDelete({ _id, _uid: req.user._id }).then(product => {
+
+		if (product) {
+			res.json({
+				message: "Product successfully deleted"
+			});
+		} else {
+			res.json({
+				message: "Product does not exist or you are not allowed to remove this product"
+			});
+		}
+
+	}).catch(err => {
+		res.statusCode = 401;
+		res.json({
+			message: 'Error occured while deleting this product'
+		});
+	});
+});
+
 // Edit product
 router.put('/:id', isAuth, (req, res) => {
-	const _id = req.param('id');
+	const _id = req.params.id;
 	const productToUpdate = req.body;
 
 	if (productToUpdate) {
