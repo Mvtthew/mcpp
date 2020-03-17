@@ -79,7 +79,7 @@ router.post('/token', (req, res) => {
 	} else {
 		res.statusCode = 400;
 		res.json({
-			message: "All fields are required (email, password)"
+			message: "Not all required fields presented (email, password)"
 		});
 	}
 });
@@ -117,7 +117,7 @@ router.post('/register', (req, res) => {
 	} else {
 		res.statusCode = 400;
 		res.json({
-			message: "All fields are required (name, email, password)"
+			message: "Not all required fields presented (name, email, password)"
 		});
 	}
 });
