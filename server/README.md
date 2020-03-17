@@ -225,7 +225,7 @@ Headers:
 	Authorization: Bearer eyJhbGciOiJ,
 	Content-Type: application/json
 }
-Body (example1): (you can update all or only required fields at once)
+Body (example1): (you can create product with all or only required fields)
 {
 	"name": "Wolf",
 	"category": "Lipsticks",
@@ -253,6 +253,62 @@ Body (example2):
 ```
 {
 	"description": "",
+	"rating": 0,
+	"pans": {
+		"all": 0,
+		"used": 0
+	},
+	"uses": 0,
+	"_id": "5e6fddcfb24c6d0384a80b97",
+	"_uid": "5e6fdd77e0d80e213046d7ff",
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD",
+	"attributes": [],
+	"__v": 0
+}
+```
+
+
+## Edit products
+>Request [PUT]
+```
+/products/[product_id]
+
+Headers:
+{
+	Authorization: Bearer eyJhbGciOiJ,
+	Content-Type: application/json
+}
+Body (example1): (you can update product all or only required fields at once)
+{
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD"
+}
+Body (example2):
+{
+	"name": "Wolf",
+	"category": "Lipsticks",
+	"brand": "CatD",
+	"description": "Not very good product",
+	"rating": 8,
+	"pans": {
+		"all": 5,
+		"used": 1
+	},
+	"uses": 15,
+	"attributes": [
+		"Expires in": "5 months",
+		"Given to": "Laura"
+	]
+}
+```
+
+>Example response
+```
+{
+	"description": "Not very good product",
 	"rating": 0,
 	"pans": {
 		"all": 0,

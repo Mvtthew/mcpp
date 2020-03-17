@@ -29,6 +29,33 @@ router.get('/', isAuth, (req, res) => {
 
 });
 
+// Edit product
+router.put('/:id', isAuth, (req, res) => {
+	const _id = req.param('id');
+	const productToUpdate = req.body;
+
+	if (productToUpdate) {
+		Product.findOneAndUpdate({ _id, _uid: req.user._id }, productToUpdate).then(() => {
+
+			Product.findById({ _id }).then(product => {
+				res.json(product);
+			});
+
+		}).catch(err => {
+			res.statusCode = 401;
+			res.json({
+				message: "Bad updated product object"
+			});
+		});
+	} else {
+		res.statusCode = 401;
+		res.json({
+			message: "Bad updated product object"
+		});
+	}
+
+});
+
 // Create product
 router.post('/', isAuth, (req, res) => {
 
