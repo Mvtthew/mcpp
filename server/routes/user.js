@@ -89,7 +89,9 @@ router.post('/register', (req, res) => {
 	const {
 		name,
 		email,
-		password
+		password,
+		birthdate,
+		gender
 	} = req.body;
 	if (name && email && password) {
 		// Check if email is free
@@ -99,6 +101,8 @@ router.post('/register', (req, res) => {
 				User.create({
 					name,
 					email,
+					birthdate,
+					gender,
 					password: hashedPassword
 				}).then(user => {
 					user.password = null;
