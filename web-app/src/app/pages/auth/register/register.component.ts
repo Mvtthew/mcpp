@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
 
 	registerForm: FormGroup;
+	error: string;
 
 	constructor(private fb: FormBuilder, private authService: AuthService) { }
 
@@ -31,7 +32,15 @@ export class RegisterComponent implements OnInit {
 			password
 		} = this.registerForm.value;
 
-		this.authService.registerUser(name, email, password).subscribe(console.log);
+		this.authService.registerUser(name, email, password).subscribe(
+			user => {
+				this.error = null;
+				console.log(user);
+			},
+			error => {
+				this.error = error.error.message;
+			}
+		);
 
 	}
 
