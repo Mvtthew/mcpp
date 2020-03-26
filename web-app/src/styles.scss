@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+// Bootstrap 4
+
+// Cards
+$border-radius: 1.2rem;
+$card-bg: transparent;
+.card {
+	backdrop-filter: blur(20px) brightness(110%);
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// Boxicons
+@import "../node_modules/boxicons/css/boxicons.min.css";
