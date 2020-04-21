@@ -4,49 +4,84 @@
 		Register
 	</h1>
 
-	<div
-		class="alert alert-danger"
-		role="alert"
-		*ngIf="error"
-	>
-		{{ error }}
-	</div>
-
-	<div class="form-group">
-		<label for="name">Name</label>
+	<mat-form-field class="w-100">
+		<mat-label for="name">Name</mat-label>
 		<input
+			matInput
 			id="name"
-			class="form-control"
 			type="text"
 			formControlName="name"
 		>
-	</div>
+	</mat-form-field>
 
-	<div class="form-group">
-		<label for="email">E-mail</label>
+	<mat-form-field class="w-100">
+		<mat-label for="email">E-mail</mat-label>
 		<input
+			matInput
 			id="email"
-			class="form-control"
 			type="email"
 			formControlName="email"
 		>
-	</div>
+	</mat-form-field>
 
-	<div class="form-group">
-		<label for="password">Password</label>
+	<mat-form-field class="w-100">
+		<mat-label for="password">Password</mat-label>
 		<input
+			matInput
 			id="password"
-			class="form-control"
 			type="password"
 			formControlName="password"
 		>
-	</div>
+	</mat-form-field>
 
-	<button
-		class="btn btn-primary"
-		(click)="registerUser()"
+	<mat-form-field class="w-100">
+		<mat-label for="birthdate">Birthdate</mat-label>
+		<input
+			matInput
+			[matDatepicker]="picker"
+			id="birthdate"
+			formControlName="birthdate"
+		>
+		<mat-datepicker-toggle
+			matSuffix
+			[for]="picker"
+		></mat-datepicker-toggle>
+		<mat-datepicker #picker></mat-datepicker>
+	</mat-form-field>
+
+	<mat-radio-group
+		formControlName="gender"
+		class="d-block"
 	>
-		Register
-	</button>
+		<label>Gender</label>
+		<mat-radio-button
+			value="f"
+			class="d-block"
+		>
+			Female
+		</mat-radio-button>
+		<mat-radio-button
+			value="m"
+			class="d-block"
+		>
+			Male
+		</mat-radio-button>
+		<mat-radio-button
+			value="o"
+			class="d-block"
+		>
+			Other
+		</mat-radio-button>
+	</mat-radio-group>
+
+	<div class="text-right">
+		<button
+			mat-fab
+			color="primary"
+			(click)="registerUser()"
+		>
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
 
 </form>

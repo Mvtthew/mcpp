@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
 
 	registerForm: FormGroup;
-	error: string;
 
 	constructor(private fb: FormBuilder, private authService: AuthService) { }
 
@@ -19,7 +18,9 @@ export class RegisterComponent implements OnInit {
 		this.registerForm = this.fb.group({
 			name: ['', []],
 			email: ['', []],
-			password: ['', []]
+			password: ['', []],
+			birthdate: ['', []],
+			gender: ['', []]
 		});
 
 	}
@@ -29,16 +30,17 @@ export class RegisterComponent implements OnInit {
 		const {
 			name,
 			email,
-			password
+			password,
+			birthdate,
+			gender
 		} = this.registerForm.value;
 
-		this.authService.registerUser(name, email, password).subscribe(
+		this.authService.registerUser(name, email, password, birthdate, gender).subscribe(
 			user => {
-				this.error = null;
+
 				console.log(user);
 			},
 			error => {
-				this.error = error.error.message;
 			}
 		);
 
