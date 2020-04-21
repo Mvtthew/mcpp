@@ -7,7 +7,22 @@ $card-bg: transparent;
 	backdrop-filter: blur(20px) brightness(110%);
 }
 
+// Inputs
+$input-border-radius: 0.5rem;
+$label-margin-bottom: 0;
+
+// Alerts
+$alert-border-radius: 0.5rem;
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Boxicons
 @import "../node_modules/boxicons/css/boxicons.min.css";
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+// Global
+body {
+	font-family: "Montserrat";
+}

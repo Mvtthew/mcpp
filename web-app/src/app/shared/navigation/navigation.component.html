@@ -1,0 +1,54 @@
+<div class="navigation">
+
+	<a
+		routerLink="/"
+		routerLinkActive="active"
+		[routerLinkActiveOptions]="{exact: true}"
+	>
+		<i class="bx bx-home"></i>
+		Home
+	</a>
+
+	<a
+		(click)="toggleMenu()"
+		[ngClass]="{'active': menuVisible}"
+	>
+		<i class="bx bx-menu"></i>
+		Menu
+	</a>
+
+</div>
+
+<div
+	id="menu"
+	[attr.show]="menuVisible"
+>
+
+	<a routerLink="/">
+		<i class="bx bx-home"></i>
+		Home
+	</a>
+	<a
+		routerLink="/auth/register"
+		routerLinkActive="active"
+	>
+		<i class="bx bx-user-plus"></i>
+		Register
+	</a>
+	<a
+		routerLink="/auth/login"
+		routerLinkActive="active"
+	>
+		<i class="bx bx-user"></i>
+		Login
+	</a>
+
+	<a
+		routerLink="/"
+		class="user"
+	>
+		<i class="bx bxs-user-badge"></i>
+		UserName
+	</a>
+
+</div>
