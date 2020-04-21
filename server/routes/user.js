@@ -8,122 +8,23 @@ const User = require('../models/User');
 // Middleware
 const isAuth = require('../middleware/isAuth');
 
+// Users Service
+const UsersService = require('../services/UsersService');
+const usersService = new UsersService();
+
 // Get requested user data 
-router.get('/', isAuth, (req, res) => {
-	res.json(req.user);
-});
+router.get('/', isAuth, (req, res) => usersService.getUser(req).subscribe(data => res.json(data)));
 
 // Update requested user
-router.put('/', isAuth, (req, res) => {
-
-	let userToUpdate = req.body;
-
-	if (userToUpdate.password) {
-		userToUpdate.password = crypto.createHash('sha256').update(userToUpdate.password).digest('base64');
-	}
-
-	User.findByIdAndUpdate(req.user._id, userToUpdate).then(() => {
-		User.findById(req.user._id).select({ password: 0 }).then(newUser => {
-			res.json(newUser);
-		});
-	}).catch(err => {
-		res.statusCode = 401;
-		res.json({
-			message: "Bad updated user object"
-		});
-	});
-
-});
+router.put('/', isAuth, (req, res) => usersService.updateUser(req).subscribe(data => res.json(data)));
 
 // Delete requested user
-router.delete('/', isAuth, (req, res) => {
-	User.findByIdAndDelete(req.user._id).then(() => {
-		res.json({
-			message: "User succesfully deleted"
-		});
-	}).catch(err => {
-		res.json(err);
-	});
-});
+router.delete('/', isAuth, (req, res) => usersService.deleteUser(req).subscribe(data => res.json(data)));
 
-// User login / get token endpoint
-router.post('/token', (req, res) => {
-	const {
-		email,
-		password
-	} = req.body;
-	if (email && password) {
-		const hashedPassword = crypto.createHash('sha256').update(password).digest('base64');
-		User.findOne({ email, password: hashedPassword }).then(user => {
-			if (user) {
-
-				jwt.sign({ _id: user._id }, jwtSecret, { expiresIn: '14d' }, (err, token) => {
-					if (err) {
-						res.statusCode = 500;
-						console.log(err);
-					} else {
-						res.json({
-							tokenType: 'Bearer',
-							token
-						});
-					}
-				});
-
-			} else {
-				res.statusCode = 401;
-				res.json({
-					message: "Bad credentials"
-				});
-			}
-		});
-	} else {
-		res.statusCode = 400;
-		res.json({
-			message: "Not all required fields presented (email, password)"
-		});
-	}
-});
+// User get token endpoint
+router.post('/token', (req, res) => usersService.userGetToken(req).subscribe(data => res.json(data)));
 
 // User register endpoint
-router.post('/register', (req, res) => {
-	const {
-		name,
-		email,
-		password,
-		birthdate,
-		gender
-	} = req.body;
-	if (name && email && password) {
-		// Check if email is free
-		User.findOne({ email }).then(user => {
-			if (!user) {
-				const hashedPassword = crypto.createHash('sha256').update(password).digest('base64');
-				User.create({
-					name,
-					email,
-					birthdate,
-					gender,
-					password: hashedPassword
-				}).then(user => {
-					user.password = null;
-					res.statusCode = 201;
-					res.json(user);
-				});
-			} else {
-				res.statusCode = 400;
-				res.json({
-					message: "User with this e-mail exists"
-				});
-
-			}
-		});
-
-	} else {
-		res.statusCode = 400;
-		res.json({
-			message: "Not all required fields presented (name, email, password)"
-		});
-	}
-});
+router.post('/register', (req, res) => usersService.registerUser(req).subscribe(data => res.json(data)));
 
 module.exports = router;
