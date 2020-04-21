@@ -1,4 +1,7 @@
 const { Observable } = require('rxjs');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const jwtSecret = require('../config/config').jwtSecret;
 
 // User model
 const User = require('../models/User');
